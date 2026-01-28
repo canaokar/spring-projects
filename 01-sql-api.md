@@ -6,11 +6,11 @@ Objective
 Build a Spring Boot application that integrates:
 - External REST APIs
 - MySQL persistence using JPA
-- Validation, logging, and basic business rules
+- Basic business rules and validation
 - Simple “cron-like” behaviour via an endpoint
 
 This lab is designed to test real backend fundamentals:
-REST design, database interaction, external API calls, validation, and clean separation of concerns.
+REST design, database interaction, external API calls, and clean separation of concerns.
 
 
 Functional Requirements
@@ -26,9 +26,8 @@ The system must allow users to:
      - Alert if temperature > 35°C
 4. Fetch current weather for ALL saved cities in a single API call
 5. Automatically mark a city as being in an "ALERT" state if thresholds are crossed
-6. Log incoming requests and validate user input using middleware-style components
-7. OPTIONAL:
-   Add a cron-like simulation endpoint to refresh weather data for all saved cities
+6. OPTIONAL:
+   Add a cron-like simulation endpoint to refresh weather data for all cities
 
 
 Technology Constraints
@@ -63,10 +62,6 @@ Repository Layer
 Model Layer
 - Entity classes mapped to database tables
 - DTOs for API input/output
-
-Infrastructure
-- Filters or Interceptors for logging and validation
-- application.yml for configuration
 
 
 Database Design
@@ -104,21 +99,11 @@ Core Concepts to Implement
        temperature > max_temp_alert
    - Store last known temperature
 
-4. Validation
+4. Basic Validation
    - City name must not be blank
    - Alert thresholds must make logical sense
      (min < max if both provided)
-   - Use Bean Validation annotations where appropriate
-
-5. Logging
-   - Log incoming requests
-   - Log invalid input attempts
-   - Log calls to external API
-
-6. Cron-like Simulation (Optional)
-   - Endpoint that refreshes weather for all saved cities
-   - Re-evaluates alert states
-   - Updates database records
+   - Validation can be done in controller or service layer
 
 
 Suggested REST Endpoints
@@ -224,7 +209,6 @@ Non-Functional Requirements
   - repository
   - model
   - dto
-  - config / filter
 
 - Proper HTTP status codes
 - No business logic inside controllers
@@ -241,7 +225,6 @@ Evaluation Criteria
 - Correct alert logic
 - Clean, readable code
 - Graceful error handling
-- Sensible logging
 
 
 Expected Outcome
@@ -251,5 +234,4 @@ By the end of this lab, participants should demonstrate:
 - Real-world Spring Boot REST development
 - External API integration
 - SQL persistence with JPA
-- Input validation and logging
 - Backend system thinking beyond “CRUD only”
