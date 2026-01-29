@@ -18,7 +18,7 @@ Functional Requirements
 
 The system must allow users to:
 
-1. Fetch current weather for any city using an external Weather API
+1. Fetch current weather for any city using an external Weather API (https://old.openweathermap.org/)
 2. Save favourite cities to a MySQL database
 3. Define alert temperature thresholds per city
    - Example:
